@@ -1,7 +1,7 @@
 export async function predictHousePrice(formData) {
 
     const response = await fetch(
-        "http://127.0.0.1:5000/predict",
+        `${import.meta.env.VITE_API_URL}/predict`,
         {
             method: "POST",
 
