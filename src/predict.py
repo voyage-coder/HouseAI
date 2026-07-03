@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 
 # Loads saved model
-model = joblib.load("models/house_price_model.joblib")
+model = joblib.load("models/linear_model.joblib")
 print("Model loaded successfully")
 
 # Function to predict house price

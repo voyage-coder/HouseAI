@@ -5,7 +5,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 # import prediction function
-from src.predict import predict_house_price
+from predict import predict_house_price
 
 # Create Flask application
 app = Flask(__name__)
