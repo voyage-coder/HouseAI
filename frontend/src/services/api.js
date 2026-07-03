@@ -1,22 +1,44 @@
-export async function predictHousePrice(formData) {
+import axios from "axios";
 
-    const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/predict`,
-        {
-            method: "POST",
+const API = axios.create({
+  baseURL: "http://127.0.0.1:5000",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
-            headers: {
-                "Content-Type": "application/json"
-            },
 
-            body: JSON.stringify(formData)
-        }
-    );
 
-    if (!response.ok) {
-        throw new Error("Failed to fetch prediction.");
-    }
-
-    return await response.json();
-
+export async function getModels() {
+  const response = await API.get("/models");
+  return response.data.models;
 }
+
+
+export async function predictPrice(model, features) {
+  const response = await API.post("/predict", {
+    model,
+    features,
+  });
+
+  return response.data;
+}
+
+
+
+export async function compareModels(features) {
+  const response = await API.post("/compare", {
+    features,
+  });
+
+  return response.data;
+}
+
+
+export async function getRecommendation() {
+  const response = await API.get("/recommend");
+
+  return response.data;
+}
+
+export default API;
